@@ -1,4 +1,5 @@
-PDFS := $(patsubst %.md,%.pdf,$(wildcard *.md))
+ALLPDFS := $(patsubst %.md,%.pdf,$(wildcard *.md))
+PDFS := $(filter-out readme.pdf, $(ALLPDFS))
 
 all: $(PDFS)
 
