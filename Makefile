@@ -1,4 +1,6 @@
-PDFS := $(patsubst %.md,%.pdf, $(filter-out readme.md, $(wildcard *.md)))
+MDS := $(filter-out readme.md, $(wildcard *.md))
+PDFS := $(patsubst %.md,%.pdf, $(MDS))
+TEX := $(patsubst %.md,%.tex, $(MDS))
 
 all: $(PDFS)
 
@@ -13,3 +15,9 @@ clean:
 	rm $(PDFS)
 
 rebuild: clean all
+
+# For debugging errors in tex
+%.tex: %.md template.tex
+	pandoc --template=template.tex $< -o $@
+
+debug: $(TEX)
