@@ -20,4 +20,4 @@ rebuild: clean all
 %.tex: %.md template.tex
 	pandoc --template=template.tex $< -o $@
 
-debug: $(TEX)
+tex: $(TEX)
